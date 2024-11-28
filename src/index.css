@@ -3,3 +3,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ul .active {
+    color: rgb(245, 63, 63);
+    text-decoration: underline;
+}
