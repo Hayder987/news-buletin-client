@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Card from "./Card";
+import { useNavigate } from "react-router";
 
 const RecentPost = ({ allData }) => {
   const [data, setData] = useState(allData[allData.length-1])
+  const navigate = useNavigate()
+
   const recentPostDetails = (id)=>{
     const eachPost = allData.find(item=> item._id === id)
     setData(eachPost)
@@ -13,9 +16,9 @@ const RecentPost = ({ allData }) => {
   return (
     <div className="">
       <h1 className="text-center text-4xl font-bold mb-12">Recent Post</h1>
-      <div className="flex gap-10 mb-20">
+      <div className="flex flex-col md:flex-row gap-10 mb-20">
         {/* post details card */}
-        <div className="md:w-1/2">
+        <div onClick={()=> navigate(`/posts/${_id}`)} className="md:w-1/2">
           <img src={imgPath} alt="" className="w-full rounded-xl object-cover " />
           <div className="">
           <p className="font-bold my-4 flex justify-between">

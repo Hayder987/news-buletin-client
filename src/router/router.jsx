@@ -5,6 +5,8 @@ import ErrorPage from "../pages/ErrorPage";
 import About from "../pages/About";
 import Dashboard from "../pages/Dashboard";
 import PostHandle from "../pages/PostHandle";
+import PostDetails from "../pages/PostDetails";
+import EditPost from "../pages/EditPost";
 
 
 export const router = createBrowserRouter([
@@ -28,7 +30,18 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/news/:id',
+                element: <EditPost></EditPost>,
+                loader:({params})=> fetch(`http://localhost:4000/posts/${params.id}`)
+
+            },
+            {
+                path:'/news',
                 element :<PostHandle></PostHandle>
+            },
+            {
+                path:"/posts/:id",
+                element:<PostDetails></PostDetails>,
+                loader:({params})=> fetch(`http://localhost:4000/posts/${params.id}`)
             }
         ]
     }

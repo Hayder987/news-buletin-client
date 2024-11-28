@@ -1,9 +1,11 @@
 import moment from "moment";
 import banner from "../images/banner2.jpeg";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const AddPost = () => {
   const date = moment().format('MMMM Do YYYY, h:mm:ss a');
+  const navigate = useNavigate()
     
     const addPostHandler = e => {
        e.preventDefault()
@@ -25,6 +27,7 @@ const AddPost = () => {
       .then(()=>{
         toast.success("Your Post Added Successfully")
         form.reset();
+        navigate('/')
       })
       .catch(err=> console.log(err))
     }

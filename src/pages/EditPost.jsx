@@ -1,6 +1,42 @@
+import { useLoaderData, useNavigate } from "react-router";
 import banner from "../images/banner2.jpeg";
+import moment from "moment";
+import { stringify } from "postcss";
+import { toast } from "react-toastify";
 
 const EditPost = () => {
+   const post = useLoaderData()
+   const date = moment().format('MMMM Do YYYY, h:mm:ss a');
+   const navigate = useNavigate()
+
+   const { PostTitle, imgPath, description, name, category, _id } =
+   post || {};
+
+   const postEditHandler =(e)=>{
+    e.preventDefault()
+    const form = e.target;
+    const PostTitle = form.PostTitle.value;
+    const imgPath = form.imgPath.value;
+    const description = form.description.value;
+    const name = form.name.value;
+    const category = form.category.value;  
+    const blog = {PostTitle, imgPath, description, name , category }
+    blog.time = date;
+
+   fetch(`http://localhost:4000/post/${_id}`,{
+    method: "PUT",
+    headers: {"content-type" : "application/json"},
+    body: JSON.stringify(blog)
+   })
+   .then(res=> res.json())
+   .then((result)=>{
+    toast.success("post edit Successfully")
+    form.reset()
+    navigate('/')
+   })
+
+   }
+
     return (
         <div
       style={{
@@ -13,7 +49,7 @@ const EditPost = () => {
     >
         <h1 className="text-3xl font-bold text-center my-6 text-gray-300">Edit Post Here</h1>
       <div className="md:max-w-[1000px] bg-opacity-30 mx-auto  p-4 md:p-12 bg-slate-200 rounded-xl">
-        <form className="flex flex-col gap-6">
+        <form onSubmit={postEditHandler} className="flex flex-col gap-6">
           {/* title and image */}
           <div className=" md:flex gap-6">
             <div className="form-control w-full">
@@ -23,7 +59,8 @@ const EditPost = () => {
               <input
                 type="text"
                 placeholder="title"
-                name="title"
+                name="PostTitle"
+                defaultValue={PostTitle}
                 className="input input-bordered"
                 required
               />
@@ -36,6 +73,7 @@ const EditPost = () => {
                 type="text"
                 placeholder="imgPath"
                 name="imgPath"
+                defaultValue={imgPath}
                 className="input input-bordered"
                 required
               />
@@ -51,6 +89,7 @@ const EditPost = () => {
                 type="text"
                 placeholder="description"
                 name="description"
+                defaultValue={description}
                 className="input input-bordered"
                 required
               />
@@ -67,6 +106,7 @@ const EditPost = () => {
                 type="text"
                 placeholder="name"
                 name="name"
+                defaultValue={name}
                 className="input input-bordered"
                 required
               />
@@ -79,6 +119,7 @@ const EditPost = () => {
                 type="text"
                 placeholder="Category"
                 name="category"
+                defaultValue={category}
                 className="input input-bordered"
                 required
               />
