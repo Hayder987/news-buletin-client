@@ -7,6 +7,8 @@ import Dashboard from "../pages/Dashboard";
 import PostHandle from "../pages/PostHandle";
 import PostDetails from "../pages/PostDetails";
 import EditPost from "../pages/EditPost";
+import LoginPage from "../pages/LoginPage";
+import Register from "../pages/Register";
 
 
 export const router = createBrowserRouter([
@@ -42,6 +44,14 @@ export const router = createBrowserRouter([
                 path:"/posts/:id",
                 element:<PostDetails></PostDetails>,
                 loader:({params})=> fetch(`http://localhost:4000/posts/${params.id}`)
+            },
+            {
+                path:'/login',
+                element:<LoginPage></LoginPage>
+            },
+            {
+                path:'/register',
+                element:<Register></Register>
             }
         ]
     }

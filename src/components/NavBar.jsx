@@ -11,6 +11,7 @@ const NavBar = () => {
             <ul className="flex gap-10 font-semibold">
                 <NavLink to='/'><li className="">Home</li></NavLink>
                 <NavLink to='/about'><li className="">About</li></NavLink>
+                <NavLink to='/login'><li className="">Login</li></NavLink>
                 <NavLink to='/deshboard'><li className="">Dashboard</li></NavLink>
             </ul>
            </div>
