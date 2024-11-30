@@ -18,7 +18,7 @@ const AddPost = () => {
        const blog = {PostTitle, imgPath, description, name , category }
        blog.time = date;
 
-      fetch('http://localhost:4000/posts',{
+      fetch('https://news-buletin-server.vercel.app/posts',{
         method: "POST",
         headers:{"content-type" : "application/json"},
         body : JSON.stringify(blog)

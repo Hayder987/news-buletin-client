@@ -9,6 +9,10 @@ import PostDetails from "../pages/PostDetails";
 import EditPost from "../pages/EditPost";
 import LoginPage from "../pages/LoginPage";
 import Register from "../pages/Register";
+import AdminPannel from "../pages/AdminPannel";
+import UserPrivate from "../private/UserPrivate";
+import AllUser from "../pages/AllUser";
+
 
 
 export const router = createBrowserRouter([
@@ -20,7 +24,6 @@ export const router = createBrowserRouter([
             {
                 path:"/",
                 element:<Home></Home>,
-                loader: ()=> fetch('http://localhost:4000/posts')
             },
             {
                 path:'/about',
@@ -28,22 +31,19 @@ export const router = createBrowserRouter([
             },
             {
                 path:"/deshboard",
-                element: <Dashboard></Dashboard>
+                element: <UserPrivate><Dashboard></Dashboard></UserPrivate>
             },
             {
                 path:'/news/:id',
                 element: <EditPost></EditPost>,
-                loader:({params})=> fetch(`http://localhost:4000/posts/${params.id}`)
+                loader:({params})=> fetch(`https://news-buletin-server.vercel.app/posts/${params.id}`)
 
             },
-            {
-                path:'/news',
-                element :<PostHandle></PostHandle>
-            },
+            
             {
                 path:"/posts/:id",
-                element:<PostDetails></PostDetails>,
-                loader:({params})=> fetch(`http://localhost:4000/posts/${params.id}`)
+                element:<UserPrivate><PostDetails></PostDetails></UserPrivate>,
+                loader:({params})=> fetch(`https://news-buletin-server.vercel.app/posts/${params.id}`)
             },
             {
                 path:'/login',
@@ -52,6 +52,20 @@ export const router = createBrowserRouter([
             {
                 path:'/register',
                 element:<Register></Register>
+            },
+            {
+                path:'/admin',
+                element: <AdminPannel></AdminPannel>,
+                children:[
+                    {
+                        path:'/admin/addpost',
+                        element :<PostHandle></PostHandle>
+                    },
+                    {
+                        path:'/admin/users',
+                        element :<AllUser></AllUser>,
+                    },
+                ]
             }
         ]
     }

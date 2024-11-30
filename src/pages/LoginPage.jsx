@@ -1,10 +1,13 @@
 import { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContex } from "../Context/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginPage = () => {
   const {loginUser, googleLogIn} = useContext(AuthContex)
+  const navigate = useNavigate()
+  const {state} = useLocation()
+  console.log(state)
 
   const loginHandler = e =>{
     e.preventDefault();
@@ -18,7 +21,7 @@ const LoginPage = () => {
       const lastLogIn = result.user.metadata.lastSignInTime;
       const user = {email, lastLogIn}
       console.log(result.user)
-      fetch('http://localhost:4000/user',{
+      fetch('https://news-buletin-server.vercel.app/user',{
         method: 'PATCH',
         headers: {'content-type':'application/json'},
         body: JSON.stringify(user)
@@ -28,6 +31,12 @@ const LoginPage = () => {
         form.reset()
         console.log(data)
       })
+     if(state){
+      navigate(state)
+     }
+     else{
+      navigate('/')
+     }
     })
     .catch(err=> {
       console.log(err.message)
@@ -49,7 +58,7 @@ const googleLoginHandler = ()=>{
 
     }
 
-    fetch('http://localhost:4000/user',{
+    fetch('https://news-buletin-server.vercel.app/user',{
       method: "PUT",
       headers: {'content-type': 'application/json'},
       body: JSON.stringify(user)
@@ -60,6 +69,12 @@ const googleLoginHandler = ()=>{
     })
       
     console.log(result.user)
+    if(state){
+      navigate(state)
+     }
+     else{
+      navigate('/')
+     }
   })
   .catch(err=>{
     console.log(err.message);

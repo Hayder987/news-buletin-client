@@ -8,7 +8,7 @@ const Mainlayout = () => {
         <div>
             <div className="container mx-auto p-3">
                 <NavBar></NavBar>
-                <div className="min-h-[70vh] md:px-12">
+                <div className="min-h-[70vh] ">
                   <Outlet></Outlet>
                 </div>
                 <Footer></Footer>

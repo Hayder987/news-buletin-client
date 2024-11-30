@@ -13,7 +13,7 @@ const CommentForm = () => {
         const message = form.text.value;
         const comment = {name, message, time}
 
-        fetch('http://localhost:4000/comments',{
+        fetch('https://news-buletin-server.vercel.app/comments',{
             method: "POST",
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(comment)

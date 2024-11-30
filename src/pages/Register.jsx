@@ -22,7 +22,7 @@ const Register = () => {
           const createAt = result?.user?.metadata?.creationTime;
           const signMethod = result.providerId || ""
           const user = {name, imgPath, email, createAt,signMethod};
-          fetch('http://localhost:4000/users',{
+          fetch('https://news-buletin-server.vercel.app/users',{
             method: 'POST',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(user)

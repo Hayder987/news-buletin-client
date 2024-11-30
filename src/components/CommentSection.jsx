@@ -8,7 +8,7 @@ const CommentSection = () => {
     const {setAllComment} = useContext(commentContext)
     
     useEffect(()=>{
-        fetch('http://localhost:4000/comments')
+        fetch('https://news-buletin-server.vercel.app/comments')
         .then(res=> res.json())
         .then(comment=> {
             setAllComment(comment)

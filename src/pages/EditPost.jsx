@@ -23,7 +23,7 @@ const EditPost = () => {
     const blog = {PostTitle, imgPath, description, name , category }
     blog.time = date;
 
-   fetch(`http://localhost:4000/post/${_id}`,{
+   fetch(`https://news-buletin-server.vercel.app/post/${_id}`,{
     method: "PUT",
     headers: {"content-type" : "application/json"},
     body: JSON.stringify(blog)

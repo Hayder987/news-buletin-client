@@ -3,28 +3,29 @@ import { FaUserCircle } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { RiChatDeleteLine } from "react-icons/ri";
 import { commentContext } from "../Context/CommentProvider";
+import { AuthContex } from "../Context/AuthProvider";
 
 const CommentDisplay = () => {
   const { allComment, commentDelete } = useContext(commentContext);
   const nameRef = useRef();
-  const [commentId, setCommentId] = useState('')
+  const [commentId, setCommentId] = useState("");
+  const {user} = useContext(AuthContex)
 
-  const editCommentHandler =()=>{
+  const editCommentHandler = () => {
     const message = nameRef.current.value;
-    const comment = {message}
+    const comment = { message };
 
-    document.getElementById("my_modal_5").close()
-    fetch(`http://localhost:4000/comment/${commentId}`,{
-      method:"PUT",
-      headers:{'content-type': 'application/json'},
-      body: JSON.stringify(comment)
+    document.getElementById("my_modal_5").close();
+    fetch(`https://news-buletin-server.vercel.app/comment/${commentId}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(comment),
     })
-    .then(res=> res.json())
-    .then(data=>{
-      console.log(data)
-    })
-    
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
   return (
     <div className="mt-12 flex flex-col gap-4 ">
@@ -48,18 +49,26 @@ const CommentDisplay = () => {
           <div className="flex gap-3 flex-col ">
             <button
               title="Edit"
-              onClick={() => {document.getElementById("my_modal_5").showModal(), setCommentId(comment._id)}}
+              onClick={() => {
+                document.getElementById("my_modal_5").showModal(),
+                  setCommentId(comment._id);
+              }}
               className="p-2 text-blue-600  rounded-xl text-xl"
             >
               <MdEdit />
             </button>
-            <button
-              title="Delete"
-              onClick={() => commentDelete(comment._id)}
-              className="p-2 text-red-600 rounded-xl text-xl"
-            >
-              <RiChatDeleteLine />
-            </button>
+            {
+              user?.email === 'admin@gmail.com' &&
+              <button
+                title="Delete"
+                onClick={() => commentDelete(comment._id)}
+                className="p-2 text-red-600 rounded-xl text-xl"
+              >
+                <RiChatDeleteLine />
+              </button>
+            }
+              
+
           </div>
         </div>
       ))}
@@ -67,10 +76,21 @@ const CommentDisplay = () => {
       {/* modal */}
       <dialog id="my_modal_5" className="modal modal-middle sm:modal-middle">
         <div className="modal-box">
-        <input type="text" ref={nameRef} name="comment" id="" className="border p-4 w-full outline-none" />
+          <input
+            type="text"
+            ref={nameRef}
+            name="comment"
+            id=""
+            className="border p-4 w-full outline-none"
+          />
           <div className="modal-action">
-            <form method="dialog" className="w-full">     
-              <button onClick={editCommentHandler} className="btn btn-primary w-full my-4">Update</button>
+            <form method="dialog" className="w-full">
+              <button
+                onClick={editCommentHandler}
+                className="btn btn-primary w-full my-4"
+              >
+                Update
+              </button>
             </form>
           </div>
         </div>

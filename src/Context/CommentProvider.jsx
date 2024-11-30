@@ -8,7 +8,7 @@ const CommentProvider = ({children}) => {
     const [allComment, setAllComment]= useState([])
 
     const commentDelete =(id)=>{
-       fetch(`http://localhost:4000/comment/${id}`,{
+       fetch(`https://news-buletin-server.vercel.app/comment/${id}`,{
         method: "DELETE",
        })
        .then(res=> res.json())
