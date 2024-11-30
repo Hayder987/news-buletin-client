@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router";
+import { AuthContex } from "../Context/AuthProvider";
 
 
 const Register = () => {
+
+  const {registerUser,updateUser} = useContext(AuthContex)
 
     const registerHandler = e =>{
         e.preventDefault();
@@ -11,8 +15,25 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        const user = {name, imgPath, email, password};
-        
+        registerUser(email, password)
+        .then(result=>{
+          updateUser(name, imgPath)
+          console.log(result.user)
+          const createAt = result?.user?.metadata?.creationTime;
+          const signMethod = result.providerId || ""
+          const user = {name, imgPath, email, createAt,signMethod};
+          fetch('http://localhost:4000/users',{
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(user)
+          })
+          .then(res=> res.json())
+          .then((data)=>{
+            console.log(data)
+            form.reset();
+          })
+        })
+        .catch(err=> console.log(err.message))
     }
 
     return (
@@ -94,3 +115,5 @@ const Register = () => {
 };
 
 export default Register;
+
+

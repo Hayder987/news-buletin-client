@@ -6,13 +6,16 @@ import { RouterProvider } from 'react-router'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CommentProvider from './Context/CommentProvider'
+import AuthProvider from './Context/AuthProvider'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <CommentProvider>
-      <RouterProvider router={router}></RouterProvider>
-    </CommentProvider>
+    <AuthProvider>
+      <CommentProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </CommentProvider>
+    </AuthProvider>
     <ToastContainer
     position="top-right"
     autoClose={2000}
