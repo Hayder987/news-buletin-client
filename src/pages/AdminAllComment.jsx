@@ -32,9 +32,13 @@ const AdminAllComment = () => {
             visible={true}
           />
       </div> : (
-        <div className="grid grid-cols-2 gap-4">
+        <div 
+        
+        className="grid grid-cols-2 gap-4">
           {allComments.map((comment) => (
             <div
+            data-aos="fade-up"
+            data-aos-duration="1000" 
               key={comment._id}
               className="border p-4 rounded-xl flex justify-between"
             >

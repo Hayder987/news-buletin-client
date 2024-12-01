@@ -7,6 +7,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CommentProvider from './Context/CommentProvider'
 import AuthProvider from './Context/AuthProvider'
+import 'aos/dist/aos.css';
+import Aos from 'aos'
+Aos.init();
 
 
 createRoot(document.getElementById('root')).render(

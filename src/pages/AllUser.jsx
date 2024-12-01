@@ -52,7 +52,10 @@ const AllUser = () => {
   }
 
   return (
-    <div>
+    <div
+    
+    >
+      
       {
         loading ? <div className="">
             <CirclesWithBar
@@ -68,8 +71,15 @@ const AllUser = () => {
           visible={true}
         />
         </div>:
-        <div className="overflow-x-auto">
-        <table className="table">
+        <div
+        >
+          
+        <table 
+        data-aos="fade-left"
+        data-aos-anchor="#example-anchor"
+        data-aos-offset="500"
+        data-aos-duration="1500"
+        className="table">
           {/* head */}
           <thead>
             <tr>

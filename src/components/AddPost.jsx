@@ -33,7 +33,10 @@ const AddPost = () => {
     }
 
   return (
+    
     <div
+    data-aos="zoom-in-left"
+    data-aos-duration="1000"
       style={{
         background: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${banner})`,
         backgroundSize: "cover",

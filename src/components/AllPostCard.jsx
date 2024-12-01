@@ -1,3 +1,4 @@
+
 import { useNavigate } from "react-router";
 
 
@@ -6,8 +7,14 @@ const AllPostCard = ({post}) => {
 
     const navigate = useNavigate()
 
+    
+
     return (
-        <div onClick={()=>navigate(`/posts/${_id}`)} className='flex justify-center items-center flex-col gap-8  p-3'>
+        <div onClick={()=>navigate(`/posts/${_id}`)} 
+        data-aos="flip-left"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="2000"
+        className='flex justify-center items-center flex-col gap-8  p-3'>
             <div className="">
                 <img src={imgPath} alt="" className="w-full h-[250px] " />
             </div>

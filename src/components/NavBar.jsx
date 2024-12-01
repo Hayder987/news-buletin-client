@@ -60,7 +60,9 @@ const NavBar = () => {
             }
            </div>
            }
-           <div className={`
+           <div 
+           
+           className={`
            absolute ${condition?'flex ':"hidden"} z-50 duration-1000 top-24 right-0  
            bg-slate-100 rounded-xl p-6 md:p-12
             `}>

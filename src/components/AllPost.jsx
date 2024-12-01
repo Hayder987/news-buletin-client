@@ -4,7 +4,12 @@ import AllPostCard from "./AllPostCard";
 const AllPost = ({ allData }) => {
   const {pathname} = useLocation();
   return (
-    <div className="mt-16">
+    <div 
+        data-aos="fade-left"
+        data-aos-anchor="#example-anchor"
+        data-aos-offset="500"
+        data-aos-duration="1500"
+    className="mt-16">
       {
         pathname==='/admin/allpost'?'' : <h1 className="text-center text-4xl font-bold mb-12">All Post</h1> 
       }
