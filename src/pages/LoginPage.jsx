@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContex } from "../Context/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const {loginUser, googleLogIn} = useContext(AuthContex)
   const navigate = useNavigate()
   const {state} = useLocation()
-  console.log(state)
 
   const loginHandler = e =>{
     e.preventDefault();
@@ -20,16 +20,16 @@ const LoginPage = () => {
       
       const lastLogIn = result.user.metadata.lastSignInTime;
       const user = {email, lastLogIn}
-      console.log(result.user)
+      toast.success("User Login SuccessFully")
       fetch('https://news-buletin-server.vercel.app/user',{
         method: 'PATCH',
         headers: {'content-type':'application/json'},
         body: JSON.stringify(user)
       })
       .then(res=> res.json())
-      .then(data=> {
+      .then(()=> {
         form.reset()
-        console.log(data)
+        
       })
      if(state){
       navigate(state)
@@ -39,7 +39,7 @@ const LoginPage = () => {
      }
     })
     .catch(err=> {
-      console.log(err.message)
+      toast.err(err.message)
     })
   }
 
@@ -64,11 +64,10 @@ const googleLoginHandler = ()=>{
       body: JSON.stringify(user)
     })
     .then(res=> res.json())
-    .then(data=>{
-      console.log(data)
+    .then(()=>{
+      toast.success('User Login Successfully')
     })
-      
-    console.log(result.user)
+  
     if(state){
       navigate(state)
      }
@@ -77,7 +76,7 @@ const googleLoginHandler = ()=>{
      }
   })
   .catch(err=>{
-    console.log(err.message);
+    toast.error(err.message);
   })
 }
 

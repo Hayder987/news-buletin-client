@@ -4,6 +4,7 @@ import { MdEdit } from "react-icons/md";
 import { RiChatDeleteLine } from "react-icons/ri";
 import { commentContext } from "../Context/CommentProvider";
 import { AuthContex } from "../Context/AuthProvider";
+import { toast } from "react-toastify";
 
 const CommentDisplay = () => {
   const { allComment, commentDelete } = useContext(commentContext);
@@ -22,8 +23,8 @@ const CommentDisplay = () => {
       body: JSON.stringify(comment),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then(() => {
+        toast.info('your Comment added')
       });
   };
 

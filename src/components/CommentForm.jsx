@@ -19,10 +19,10 @@ const CommentForm = () => {
             body: JSON.stringify(comment)
         })
         .then(res=> res.json())
-        .then(result=>{
+        .then(()=>{
             setAllComment([...allComment, comment])
             form.reset()
-            console.log(result)
+           
         })
     }
     return (

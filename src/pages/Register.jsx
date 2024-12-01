@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContex } from "../Context/AuthProvider";
+import { toast } from "react-toastify";
 
 
 const Register = () => {
 
   const {registerUser,updateUser} = useContext(AuthContex)
+  const navigate = useNavigate()
 
     const registerHandler = e =>{
         e.preventDefault();
@@ -18,7 +20,6 @@ const Register = () => {
         registerUser(email, password)
         .then(result=>{
           updateUser(name, imgPath)
-          console.log(result.user)
           const createAt = result?.user?.metadata?.creationTime;
           const signMethod = result.providerId || ""
           const user = {name, imgPath, email, createAt,signMethod};
@@ -28,12 +29,13 @@ const Register = () => {
             body: JSON.stringify(user)
           })
           .then(res=> res.json())
-          .then((data)=>{
-            console.log(data)
+          .then(()=>{
+            toast.success('User Create SuccessFully')
             form.reset();
+            navigate('/')
           })
         })
-        .catch(err=> console.log(err.message))
+        .catch(err=> toast.error(err.message))
     }
 
     return (
@@ -96,7 +98,7 @@ const Register = () => {
           <div className="form-control mt-6">
             <input
               type="submit"
-              value="Login"
+              value="Register"
               className="bg-blue-600 py-3 px-6 text-white rounded-xl"
             />
           </div>

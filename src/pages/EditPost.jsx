@@ -1,7 +1,6 @@
 import { useLoaderData, useNavigate } from "react-router";
 import banner from "../images/banner2.jpeg";
 import moment from "moment";
-import { stringify } from "postcss";
 import { toast } from "react-toastify";
 
 const EditPost = () => {
@@ -29,7 +28,7 @@ const EditPost = () => {
     body: JSON.stringify(blog)
    })
    .then(res=> res.json())
-   .then((result)=>{
+   .then(()=>{
     toast.success("post edit Successfully")
     form.reset()
     navigate('/')

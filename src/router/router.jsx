@@ -12,6 +12,8 @@ import Register from "../pages/Register";
 import AdminPannel from "../pages/AdminPannel";
 import UserPrivate from "../private/UserPrivate";
 import AllUser from "../pages/AllUser";
+import AdminAllPost from "../pages/AdminAllPost";
+import AdminAllComment from "../pages/AdminAllComment";
 
 
 
@@ -64,6 +66,14 @@ export const router = createBrowserRouter([
                     {
                         path:'/admin/users',
                         element :<AllUser></AllUser>,
+                    },
+                    {
+                        path:'/admin/allpost',
+                        element :<AdminAllPost></AdminAllPost>,
+                    },
+                    {
+                        path:'/admin/allcomment',
+                        element :<AdminAllComment></AdminAllComment>,
                     },
                 ]
             }

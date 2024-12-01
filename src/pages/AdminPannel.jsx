@@ -24,7 +24,8 @@ const AdminPannel = () => {
                 <ul className="flex flex-col gap-4">
                     <NavLink to='/admin/addpost'><li className="p-3 rounded-xl border text-xl font-semibold">Add Post</li></NavLink>
                     <NavLink to='/admin/users'><li className="p-3 rounded-xl border text-xl font-semibold">All Users</li></NavLink>
-
+                    <NavLink to='/admin/allpost'><li className="p-3 rounded-xl border text-xl font-semibold">All Posts</li></NavLink>
+                    <NavLink to='/admin/allcomment'><li className="p-3 rounded-xl border text-xl font-semibold">All Comments</li></NavLink>
                 </ul>
              </div>
            </div> 

@@ -29,7 +29,7 @@ const AddPost = () => {
         form.reset();
         navigate('/')
       })
-      .catch(err=> console.log(err))
+  
     }
 
   return (

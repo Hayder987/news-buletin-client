@@ -19,7 +19,6 @@ const AllUser = () => {
     })
   },[])
 
-  console.log(allUser)
 
 
   const deleteHandler =(id)=>{

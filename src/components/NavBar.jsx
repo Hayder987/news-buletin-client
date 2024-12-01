@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContex } from "../Context/AuthProvider";
 import { FaAnglesDown } from "react-icons/fa6";
 import { RiAdminFill } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 
 const NavBar = () => {
@@ -13,6 +14,7 @@ const NavBar = () => {
     const signOutHandler =()=>{
         LogOutUser()
         setConditon(false)
+        toast.info('SignOut SuccessFull!')
         navigate('/login')
     }
     
