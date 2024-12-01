@@ -30,7 +30,7 @@ const AdminPannel = () => {
              </div>
            </div> 
            {/* display */}
-           <div className="md:w-10/12 p-12 bg-white rounded-2xl">
+           <div className="md:w-10/12 p-2 lg::p-12 bg-white rounded-2xl">
              <Outlet></Outlet>
            </div>
         </div>

@@ -2,14 +2,15 @@ import { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContex } from "../Context/AuthProvider";
 import { FaAnglesDown } from "react-icons/fa6";
-import { RiAdminFill } from "react-icons/ri";
+import { RiAdminFill, RiCloseLargeFill, RiMenuUnfold2Fill } from "react-icons/ri";
 import { toast } from "react-toastify";
 
 
 const NavBar = () => {
     const {user, LogOutUser ,loading} = useContext(AuthContex)
     const [condition, setConditon] = useState(false);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [menu, setMenu] = useState(true)
     
     const signOutHandler =()=>{
         LogOutUser()
@@ -23,12 +24,23 @@ const NavBar = () => {
            <div className="">
              <h1 className="text-4xl font-bold">Buletin</h1>
            </div>
-           <div className="hidden lg:flex">
-            <ul className="flex gap-10 font-semibold justify-center items-center">
-                <NavLink to='/'><li className="">Home</li></NavLink>
-                <NavLink to='/about'><li className="">About</li></NavLink>
-                <NavLink to='/login'><li className="">Login</li></NavLink>
-                <NavLink to='/deshboard'><li className="">Dashboard</li></NavLink>
+           <div className="flex md:hidden">
+             {
+                !menu?<button onClick={()=>setMenu(!menu)} className="text-3xl "><RiMenuUnfold2Fill /></button>:
+                     <button onClick={()=>setMenu(!menu)} className="text-3xl "><RiCloseLargeFill /></button>
+             }
+             
+           </div>
+           <div className={`md:flex ${menu?'flex':"hidden"}`}>
+            <ul onClick={()=>setMenu(!menu)} className="md:flex absolute left-0 top-20 md:top-0 md:left-0
+             bg-slate-200 md:bg-white p-12  md:p-4 md:relative gap-10 font-semibold 
+             justify-center items-center rounded-xl md:rounded-none text-2xl z-10 md:text-base
+
+             ">
+                <NavLink to='/'><li className="my-2">Home</li></NavLink>
+                <NavLink to='/about'><li className="my-2">About</li></NavLink>
+                <NavLink to='/login'><li className="my-2">Login</li></NavLink>
+                <NavLink to='/deshboard'><li className="my-2">Dashboard</li></NavLink>
                 {
                     user?.email ==='admin@gmail.com' && 
                     <NavLink to='/admin'><li className="text-xl"><RiAdminFill /></li></NavLink>
