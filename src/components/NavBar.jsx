@@ -10,7 +10,7 @@ const NavBar = () => {
     const {user, LogOutUser ,loading} = useContext(AuthContex)
     const [condition, setConditon] = useState(false);
     const navigate = useNavigate();
-    const [menu, setMenu] = useState(true)
+    const [menu, setMenu] = useState(false)
     
     const signOutHandler =()=>{
         LogOutUser()
